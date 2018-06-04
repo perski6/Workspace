@@ -104,7 +104,7 @@ public class Enemy {
                     found = true;
                     //Move 1 tile back before next Tile type to seek further path
                     counter -= 1;
-                    next = grid.GetTile((s.getXPlace() + dir[0] * counter), s.getXPlace() + dir[1] * counter);
+                    next = grid.GetTile((s.getXPlace() + dir[0] * counter), s.getYPlace() + dir[1] * counter);
                 }
                 counter ++;
             }
@@ -118,18 +118,18 @@ public class Enemy {
             Tile u = grid.GetTile(s.getXPlace(), s.getYPlace() - 1);
             Tile d = grid.GetTile(s.getXPlace(), s.getYPlace() + 1);
             Tile r = grid.GetTile(s.getXPlace() + 1, s.getYPlace());
-            Tile l = grid.GetTile(s.getXPlace() + 1, s.getYPlace());
+            Tile l = grid.GetTile(s.getXPlace() - 1, s.getYPlace());
 
-            if(s.getType() == u.getType()){
+            if(s.getType() == u.getType() && directions[1] != 1){
                 dir[0] = 0;
                 dir[1] = -1;
-            }else if (s.getType() == r.getType()){
+            }else if (s.getType() == r.getType() && directions[0] != -1){
                 dir[0] = 1;
                 dir[1] = 0;
-            }else if (s.getType() == d.getType()) {
+            }else if (s.getType() == d.getType() && directions[1] != -1) {
                 dir[0] = 0;
                 dir[1] = 1;
-            }else if (s.getType() == l.getType()) {
+            }else if (s.getType() == l.getType() && directions[0] != 1) {
                 dir[0] = -1;
                 dir[1] =  0;
             }else{
